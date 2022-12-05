@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="contact">
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+  <link rel="manifest" href="../images/site.webmanifest">
+  <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="../favicon.ico">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-config" content="../images/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind&family=Lora&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/main.css">
+  <title>Contact us</title>
+</head>
+
+<body class="contact">
+  <div class="video-background">
+    <div class="video-foreground">
+      <iframe width="1600" height="900"
+        src="https://www.youtube.com/embed/FqQAjkZOBeY?playlist=FqQAjkZOBeY&start=24&controls=0&autoplay=1&mute=1&loop=1"
+        title="YouTube video player"
+        allow="loop; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <header>
+    <nav>
+      <div class="menu-icon">
+        <svg viewbox="0 0 60 60" width="40px" height="40px">
+          <line x1="5%" y1="50%" x2="95%" y2="50%" />
+          <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        </svg>
+      </div>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a>Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Contact</h1>
+
+  <main>
+    <div class="image-wrapper">
+      <img src="../images/form.svg" alt="basic form on a clipboard">
+    </div>
+    <form>
+      <label for="name">Full name</label>
+      <input type="text" name="name" id="name">
+
+      <label for="email">Email address</label>
+      <input type="email" name="email" id="email" required>
+
+      <div class="fieldset-wrapper">
+        <fieldset>
+
+          <legend>Which of the following reasons would you like to have access to a 3D printer? (Check all that apply)
+          </legend>
+
+          <input type="checkbox" id="Models" name="3d-reasons" value="Models">
+          <label for="Models">Models</label>
+
+          <input type="checkbox" id="prototyping" name="3d-reasons" value="prototyping">
+          <label for="prototyping">Prototyping</label>
+
+          <input type="checkbox" id="toys" name="3d-reasons" value="toys">
+          <label for="toys">Toys</label>
+
+          <input type="checkbox" id="appliance-fix" name="3d-reasons" value="appliance-fix">
+          <label for="appliance-fix">Appliance fixes</label>
+
+          <input type="checkbox" id="products" name="3d-reasons" value="products-claw">
+          <label for="products">Products</label>
+        </fieldset>
+      </div>
+
+      <div class="fieldset-wrapper">
+        <fieldset>
+          <legend>What color would you like your prints to be?</legend>
+
+          <input type="radio" name="color" id="Red" value="Red">
+          <label for="Red">Red</label>
+
+          <input type="radio" name="color" id="Black" value="Black">
+          <label for="Black">Black</label>
+
+          <input type="radio" name="color" id="grey" value="grey">
+          <label for="grey">Grey</label>
+
+          <input type="radio" name="color" id="blue" value="blue">
+          <label for="blue">Blue</label>
+
+        </fieldset>
+      </div>
+      <label for="indoctrination">How did you first learn about 3D printing?</label>
+      <textarea name="indoctrination" id="indoctrination" rows="5" placeholder="Tell us your story!"></textarea>
+      <button class="button">Submit Now</button>
+    </form>
+  </main>
+  <script>
+    document.querySelector(".menu-icon").addEventListener("click", function () {
+      this.parentElement.classList.toggle("close");
+    });
+  </script>
+</body>
+
+</html>
