@@ -212,26 +212,12 @@ describe("\nImage tests\n-----------------------", () => {
     expect(dimOK, `- ${issues.join("\n- ")}`).toBe(true);
   });
 
-  test("<picture> element must contain three <source> elements with media and srcset attributes", () => {
-    const sources = docs[INDEX].querySelectorAll("picture > source");
-    expect(sources.length).toBeGreaterThanOrEqual(3);
-    sources.forEach(source => {
-      expect(source.getAttribute("media")).not.toBeNull();
-      expect(source.getAttribute("srcset")).not.toBeNull();
-    });
-  });
-
   test("contact page loads an SVG file with <img>", () =>
     expect(docs[CONTACT].querySelector("img[src$='.svg']")).not.toBeNull());
 });
 
 describe("\nMain index.html\n-----------------------", () => {
-  test("main index.html must contain a <picture>, one <main>, at least two <article>, an <aside>, and a <footer>", () => {
-    expect(
-      docs[INDEX].querySelector("picture"),
-      "<picture> not found"
-    ).not.toBeNull();
-
+  test("main index.html must contain one <main>, at least two <article>, an <aside>, and a <footer>", () => {
     expect(
       docs[INDEX].querySelector("main"),
       "<main> not found"
@@ -518,5 +504,68 @@ describe("\nContact page specific tests\n-----------------------", () => {
     expect(problems.length, `labels with issues:\n${problems.join("\n")}`).toBe(
       0
     );
+  });
+});
+
+describe("\nvideo specific tests\n-----------------------", () => {
+  test("video found", () => {
+    let video = [];
+    docs.forEach((doc, index) => {
+      if (doc.querySelector("video")) {
+        video.push({ index: index, type: "video" });
+      }
+
+      if (doc.querySelector("iframe")) {
+        video.push({ index: index, type: "iframe" });
+      }
+    });
+    if (video.length > 0) {
+      video.forEach(desc => {
+        if (desc.type === "video") {
+          const sources = docs[desc.index].querySelectorAll("video source");
+
+          expect(
+            sources.length,
+            "no video <source> elements found"
+          ).toBeGreaterThanOrEqual(1);
+
+          let webm = false;
+          let mp4 = false;
+
+          sources.forEach(source => {
+            if (source.getAttribute("type") === "video/webm") {
+              webm = true;
+            } else if (source.getAttribute("type") === "video/mp4") {
+              mp4 = true;
+            }
+          });
+
+          expect(
+            webm && mp4,
+            `video does not have source${
+              !webm && !mp4 ? "s" : ""
+            } with attribute ${!webm ? 'type="video/webm"' : ""}${
+              !webm && !mp4 ? " and " : ""
+            }${!mp4 ? 'type="video/mp4"' : ""}`
+          ).toBe(true);
+        } else if (desc.type === "iframe") {
+          const src = docs[desc.index]
+            .querySelector("iframe")
+            .getAttribute("src");
+
+          expect(src, "iframe src attribute not set").not.toBeNull();
+        } else {
+          expect(
+            false,
+            "something has gone horribly wrong and I don't know what to do"
+          ).toBe(true);
+        }
+      });
+    } else {
+      expect(
+        video.length,
+        "no <video> or <iframe> found"
+      ).toBeGreaterThanOrEqual(1);
+    }
   });
 });
